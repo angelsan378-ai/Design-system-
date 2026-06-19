@@ -3,47 +3,116 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Цветовая схема</title>
+    <title>Цветовая схема — все варианты</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+
         body {
-            font-family: system-ui, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             background: #f2f2f7;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
             padding: 2rem;
+            color: #1c1c1e;
         }
-        .card {
-            max-width: 640px;
-            width: 100%;
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .subtitle {
+            color: #8e8e93;
+            margin-bottom: 2rem;
+            font-size: 1rem;
+        }
+
+        section {
             background: white;
             border-radius: 28px;
             padding: 2rem;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
         }
-        h1 {
-            font-size: 2rem;
+
+        section h2 {
+            font-size: 1.3rem;
             font-weight: 600;
-            margin-bottom: 2rem;
-            color: #1c1c1e;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
-        .group {
-            margin-bottom: 2rem;
+
+        .badge {
+            font-size: 0.7rem;
+            font-weight: 500;
+            background: #e9e9ed;
+            padding: 0.2rem 0.7rem;
+            border-radius: 20px;
+            color: #5c5c62;
         }
-        .group-label {
-            font-size: 0.75rem;
+
+        /* ---------- Вариант 1: как на скриншоте ---------- */
+        .palette-classic .group {
+            margin-bottom: 1.5rem;
+        }
+        .palette-classic .group:last-child {
+            margin-bottom: 0;
+        }
+        .palette-classic .group-label {
+            font-size: 0.7rem;
             font-weight: 600;
             text-transform: uppercase;
+            letter-spacing: 0.05em;
             color: #8e8e93;
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.5rem;
         }
-        .swatch {
+        .palette-classic .swatch {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 6px 12px 6px 6px;
+            border-radius: 12px;
+            transition: background 0.15s;
+            cursor: default;
+        }
+        .palette-classic .swatch:hover {
+            background: #f8f8fa;
+        }
+        .palette-classic .color-box {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            flex-shrink: 0;
+        }
+        .palette-classic .color-name {
+            font-weight: 500;
+            flex: 1;
+        }
+        .palette-classic .color-hex {
+            font-family: 'SF Mono', 'Menlo', monospace;
+            font-size: 0.85rem;
+            color: #8e8e93;
+        }
+        .palette-classic hr {
+            border: none;
+            border-top: 1px solid #e9e9ed;
+            margin: 1.5rem 0;
+        }
+
+        /* ---------- Вариант 2: интерактивный ---------- */
+        .interactive .swatch {
             display: flex;
             align-items: center;
             gap: 14px;
@@ -51,20 +120,18 @@
             border-radius: 12px;
             margin-bottom: 4px;
         }
-        .color-box {
+        .interactive .color-box {
             width: 48px;
             height: 48px;
             border-radius: 12px;
-            border: 1px solid rgba(0,0,0,0.08);
+            border: 1px solid rgba(0, 0, 0, 0.08);
             flex-shrink: 0;
-            background: #e0e0e0;
         }
-        .color-name {
+        .interactive .color-name {
             font-weight: 500;
-            color: #1c1c1e;
             flex: 1;
         }
-        .color-picker-input {
+        .interactive .color-picker-input {
             width: 36px;
             height: 36px;
             border: none;
@@ -73,122 +140,434 @@
             background: transparent;
             border-radius: 8px;
         }
-        .color-picker-input::-webkit-color-swatch-wrapper {
+        .interactive .color-picker-input::-webkit-color-swatch-wrapper {
             padding: 0;
         }
-        .color-picker-input::-webkit-color-swatch {
+        .interactive .color-picker-input::-webkit-color-swatch {
             border: 1px solid #ddd;
             border-radius: 8px;
         }
-        .color-hex {
+        .interactive .color-hex {
             font-family: monospace;
             font-size: 0.85rem;
             color: #8e8e93;
             min-width: 70px;
             text-align: right;
         }
-        hr {
+        .interactive .group-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #8e8e93;
+            margin: 1.2rem 0 0.5rem 0;
+        }
+        .interactive .group-label:first-of-type {
+            margin-top: 0;
+        }
+        .interactive hr {
             border: none;
             border-top: 1px solid #e9e9ed;
             margin: 1.5rem 0;
         }
+
+        /* ---------- Вариант 3: таблица ---------- */
+        .table-wrap {
+            overflow-x: auto;
+        }
+        .color-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+        }
+        .color-table th {
+            text-align: left;
+            padding: 0.5rem 0.75rem;
+            font-weight: 600;
+            color: #5c5c62;
+            border-bottom: 1px solid #e9e9ed;
+        }
+        .color-table td {
+            padding: 0.5rem 0.75rem;
+            border-bottom: 1px solid #f0f0f2;
+        }
+        .color-table .color-cell {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .color-table .color-swatch {
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            flex-shrink: 0;
+        }
+        .color-table .copy-btn {
+            background: none;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 0.2rem 0.6rem;
+            font-size: 0.7rem;
+            cursor: pointer;
+            color: #5c5c62;
+            transition: all 0.15s;
+        }
+        .color-table .copy-btn:hover {
+            background: #f0f0f2;
+            border-color: #aaa;
+        }
+
+        /* ---------- Токены ---------- */
+        .token-box {
+            background: #1c1c1e;
+            color: #e9e9ed;
+            padding: 1.5rem;
+            border-radius: 16px;
+            font-family: 'SF Mono', 'Menlo', monospace;
+            font-size: 0.85rem;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-break: break-all;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+        .token-box .token-label {
+            color: #8e8e93;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+        .copy-all-btn {
+            background: #1c1c1e;
+            color: white;
+            border: none;
+            padding: 0.6rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.15s;
+            margin-top: 0.5rem;
+        }
+        .copy-all-btn:hover {
+            background: #3a3a3c;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1c1c1e;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+        .toast.show {
+            opacity: 1;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 1rem;
+            }
+            section {
+                padding: 1.5rem;
+            }
+            .palette-classic .swatch,
+            .interactive .swatch {
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+            .interactive .color-hex {
+                min-width: 60px;
+                font-size: 0.75rem;
+            }
+            .color-table td,
+            .color-table th {
+                padding: 0.4rem 0.5rem;
+                font-size: 0.85rem;
+            }
+        }
     </style>
 </head>
 <body>
+    <div class="container">
+        <h1>🎨 Цветовая схема</h1>
+        <p class="subtitle">Все варианты отображения в одном файле</p>
 
-<div class="card">
-    <h1>Primary Colors</h1>
-    
-    <!-- Primary Group -->
-    <div class="group">
-        <div class="group-label">Primary</div>
-        <div class="swatch">
-            <div class="color-box" id="primary-box" style="background: #1A73E8;"></div>
-            <span class="color-name">Primary</span>
-            <input type="color" id="primary-picker" class="color-picker-input" value="#1A73E8">
-            <span class="color-hex" id="primary-hex">#1A73E8</span>
-        </div>
-        <div class="swatch">
-            <div class="color-box" id="primary-dark-box" style="background: #1557B0;"></div>
-            <span class="color-name">Primary/Dark</span>
-            <input type="color" id="primary-dark-picker" class="color-picker-input" value="#1557B0">
-            <span class="color-hex" id="primary-dark-hex">#1557B0</span>
-        </div>
-        <div class="swatch">
-            <div class="color-box" id="primary-light-box" style="background: #E8F0FE;"></div>
-            <span class="color-name">Primary/Light</span>
-            <input type="color" id="primary-light-picker" class="color-picker-input" value="#E8F0FE">
-            <span class="color-hex" id="primary-light-hex">#E8F0FE</span>
-        </div>
-    </div>
-    
-    <hr>
-    
-    <!-- Secondary Group -->
-    <div class="group">
-        <div class="group-label">Secondary</div>
-        <div class="swatch">
-            <div class="color-box" id="secondary-box" style="background: #34A853;"></div>
-            <span class="color-name">Secondary</span>
-            <input type="color" id="secondary-picker" class="color-picker-input" value="#34A853">
-            <span class="color-hex" id="secondary-hex">#34A853</span>
-        </div>
-        <div class="swatch">
-            <div class="color-box" id="secondary-dark-box" style="background: #1E7E34;"></div>
-            <span class="color-name">Secondary/Dark</span>
-            <input type="color" id="secondary-dark-picker" class="color-picker-input" value="#1E7E34">
-            <span class="color-hex" id="secondary-dark-hex">#1E7E34</span>
-        </div>
-        <div class="swatch">
-            <div class="color-box" id="secondary-light-box" style="background: #E6F4EA;"></div>
-            <span class="color-name">Secondary/Light</span>
-            <input type="color" id="secondary-light-picker" class="color-picker-input" value="#E6F4EA">
-            <span class="color-hex" id="secondary-light-hex">#E6F4EA</span>
-        </div>
-    </div>
-    
-    <hr>
-    
-    <!-- System Group -->
-    <div class="group">
-        <div class="group-label">System</div>
-        <div class="swatch">
-            <div class="color-box" id="error-box" style="background: #EA4335;"></div>
-            <span class="color-name">Error</span>
-            <input type="color" id="error-picker" class="color-picker-input" value="#EA4335">
-            <span class="color-hex" id="error-hex">#EA4335</span>
-        </div>
-        <div class="swatch">
-            <div class="color-box" id="warning-box" style="background: #FBBC04;"></div>
-            <span class="color-name">Warning</span>
-            <input type="color" id="warning-picker" class="color-picker-input" value="#FBBC04">
-            <span class="color-hex" id="warning-hex">#FBBC04</span>
-        </div>
-        <div class="swatch">
-            <div class="color-box" id="success-box" style="background: #34A853;"></div>
-            <span class="color-name">Success</span>
-            <input type="color" id="success-picker" class="color-picker-input" value="#34A853">
-            <span class="color-hex" id="success-hex">#34A853</span>
-        </div>
-    </div>
-</div>
+        <!-- ==================== ВАРИАНТ 1 ==================== -->
+        <section class="palette-classic">
+            <h2>1. Классическая палитра <span class="badge">как на скриншоте</span></h2>
+            <div id="classic-palette">
+                <!-- Заполняется JavaScript -->
+            </div>
+        </section>
 
-<script>
-    // Находим все инпуты выбора цвета
-    const pickers = document.querySelectorAll('.color-picker-input');
+        <!-- ==================== ВАРИАНТ 2 ==================== -->
+        <section class="interactive">
+            <h2>2. Интерактивная палитра <span class="badge">выберите свои цвета</span></h2>
+            <div id="interactive-palette">
+                <!-- Заполняется JavaScript -->
+            </div>
+        </section>
 
-    pickers.forEach(picker => {
-        picker.addEventListener('input', (e) => {
-            // Получаем чистый ID (например, "primary" из "primary-picker")
-            const baseId = e.target.id.replace('-picker', '');
-            const color = e.target.value;
-            
-            // Обновляем цвет плитки и текстовое значение HEX
-            document.getElementById(`${baseId}-box`).style.background = color;
-            document.getElementById(`${baseId}-hex`).textContent = color.toUpperCase();
+        <!-- ==================== ВАРИАНТ 3 ==================== -->
+        <section>
+            <h2>3. Таблица всех цветов <span class="badge">с копированием</span></h2>
+            <div class="table-wrap">
+                <table class="color-table" id="color-table">
+                    <thead>
+                        <tr><th>Группа</th><th>Название</th><th>Цвет</th><th>HEX</th><th></th></tr>
+                    </thead>
+                    <tbody id="table-body">
+                        <!-- Заполняется JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ==================== ВАРИАНТ 4 ==================== -->
+        <section>
+            <h2>4. Токены для разработки <span class="badge">CSS / SCSS</span></h2>
+            <div class="token-box" id="css-tokens">
+                <div class="token-label">CSS-переменные</div>
+                <code id="css-vars-output">:root { ... }</code>
+            </div>
+            <div class="token-box" id="scss-tokens">
+                <div class="token-label">SCSS-переменные</div>
+                <code id="scss-vars-output">$colors: ...</code>
+            </div>
+            <button class="copy-all-btn" id="copy-all-tokens">📋 Скопировать все CSS-переменные</button>
+        </section>
+    </div>
+
+    <!-- Toast уведомление -->
+    <div class="toast" id="toast"></div>
+
+    <script>
+        // ============================================================
+        //  Исходные цвета (заглушки — замените на свои)
+        // ============================================================
+        const defaultColors = {
+            'Primary': '#1A73E8',
+            'Primary/Dark': '#1557B0',
+            'Primary/Light': '#E8F0FE',
+            'Secondary': '#34A853',
+            'Secondary/Dark': '#1E7E34',
+            'Secondary/Light': '#E6F4EA',
+            'Error': '#EA4335',
+            'Warning': '#FBBC04',
+            'Info': '#4285F4',
+            'Success': '#34A853'
+        };
+
+        // Группировка для отображения
+        const groups = {
+            'Primary': ['Primary', 'Primary/Dark', 'Primary/Light'],
+            'Secondary': ['Secondary', 'Secondary/Dark', 'Secondary/Light'],
+            'System': ['Error', 'Warning', 'Info', 'Success']
+        };
+
+        // Текущие цвета (будем обновлять через пикеры)
+        let currentColors = { ...defaultColors };
+
+        // ============================================================
+        //  Вспомогательные функции
+        // ============================================================
+        function hexToCssVar(name) {
+            return '--color-' + name.toLowerCase().replace(/\//g, '-').replace(/\s/g, '');
+        }
+
+        function generateCssVars(colors) {
+            let lines = [];
+            for (const [name, hex] of Object.entries(colors)) {
+                const varName = hexToCssVar(name);
+                lines.push(`  ${varName}: ${hex};`);
+            }
+            return `:root {\n${lines.join('\n')}\n}`;
+        }
+
+        function generateScssVars(colors) {
+            let lines = [];
+            for (const [name, hex] of Object.entries(colors)) {
+                const varName = '$' + name.toLowerCase().replace(/\//g, '-').replace(/\s/g, '');
+                lines.push(`${varName}: ${hex};`);
+            }
+            return lines.join('\n');
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            clearTimeout(toast._timeout);
+            toast._timeout = setTimeout(() => toast.classList.remove('show'), 2000);
+        }
+
+        // ============================================================
+        //  Рендеринг всех секций
+        // ============================================================
+        function renderAll() {
+            renderClassic();
+            renderInteractive();
+            renderTable();
+            renderTokens();
+        }
+
+        // ---------- Классическая палитра ----------
+        function renderClassic() {
+            const container = document.getElementById('classic-palette');
+            let html = '';
+            for (const [groupName, colorNames] of Object.entries(groups)) {
+                html += `<div class="group"><div class="group-label">${groupName}</div>`;
+                for (const name of colorNames) {
+                    const hex = currentColors[name] || '#cccccc';
+                    html += `
+                        <div class="swatch">
+                            <div class="color-box" style="background:${hex};"></div>
+                            <span class="color-name">${name}</span>
+                            <span class="color-hex">${hex}</span>
+                        </div>
+                    `;
+                }
+                html += `</div>`;
+                if (groupName !== 'System') html += `<hr>`;
+            }
+            container.innerHTML = html;
+        }
+
+        // ---------- Интерактивная палитра ----------
+        function renderInteractive() {
+            const container = document.getElementById('interactive-palette');
+            let html = '';
+            let groupIndex = 0;
+            for (const [groupName, colorNames] of Object.entries(groups)) {
+                if (groupIndex > 0) html += `<hr>`;
+                html += `<div class="group-label">${groupName}</div>`;
+                for (const name of colorNames) {
+                    const hex = currentColors[name] || '#cccccc';
+                    const id = name.toLowerCase().replace(/\//g, '-').replace(/\s/g, '');
+                    html += `
+                        <div class="swatch" data-name="${name}">
+                            <div class="color-box" id="box-${id}" style="background:${hex};"></div>
+                            <span class="color-name">${name}</span>
+                            <input type="color" class="color-picker-input" id="picker-${id}" value="${hex}">
+                            <span class="color-hex" id="hex-${id}">${hex}</span>
+                        </div>
+                    `;
+                }
+                groupIndex++;
+            }
+            container.innerHTML = html;
+
+            // Привязываем события пикеров
+            for (const name of Object.keys(currentColors)) {
+                const id = name.toLowerCase().replace(/\//g, '-').replace(/\s/g, '');
+                const picker = document.getElementById(`picker-${id}`);
+                const box = document.getElementById(`box-${id}`);
+                const hexSpan = document.getElementById(`hex-${id}`);
+                if (picker && box && hexSpan) {
+                    picker.addEventListener('input', function(e) {
+                        const val = e.target.value;
+                        box.style.background = val;
+                        hexSpan.textContent = val.toUpperCase();
+                        currentColors[name] = val.toUpperCase();
+                        // Перерисовать остальные секции
+                        renderTable();
+                        renderTokens();
+                        // Также обновить классическую палитру (но она статична, перерисуем)
+                        renderClassic();
+                    });
+                }
+            }
+        }
+
+        // ---------- Таблица ----------
+        function renderTable() {
+            const tbody = document.getElementById('table-body');
+            let rows = '';
+            for (const [groupName, colorNames] of Object.entries(groups)) {
+                for (const name of colorNames) {
+                    const hex = currentColors[name] || '#cccccc';
+                    const id = name.toLowerCase().replace(/\//g, '-').replace(/\s/g, '');
+                    rows += `
+                        <tr>
+                            <td>${groupName}</td>
+                            <td>${name}</td>
+                            <td>
+                                <div class="color-cell">
+                                    <div class="color-swatch" style="background:${hex};"></div>
+                                </div>
+                            </td>
+                            <td><code id="table-hex-${id}">${hex}</code></td>
+                            <td><button class="copy-btn" data-hex="${hex}">Копировать</button></td>
+                        </tr>
+                    `;
+                }
+            }
+            tbody.innerHTML = rows;
+
+            // Обработчики копирования для таблицы
+            document.querySelectorAll('.copy-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const hex = this.dataset.hex;
+                    navigator.clipboard.writeText(hex).then(() => {
+                        showToast(`Скопировано: ${hex}`);
+                    }).catch(() => {
+                        // fallback
+                        const range = document.createRange();
+                        const temp = document.createElement('span');
+                        temp.textContent = hex;
+                        document.body.appendChild(temp);
+                        range.selectNode(temp);
+                        window.getSelection().removeAllRanges();
+                        window.getSelection().addRange(range);
+                        document.execCommand('copy');
+                        document.body.removeChild(temp);
+                        showToast(`Скопировано: ${hex}`);
+                    });
+                });
+            });
+        }
+
+        // ---------- Токены ----------
+        function renderTokens() {
+            const cssVars = generateCssVars(currentColors);
+            const scssVars = generateScssVars(currentColors);
+            document.getElementById('css-vars-output').textContent = cssVars;
+            document.getElementById('scss-vars-output').textContent = scssVars;
+        }
+
+        // ============================================================
+        //  Копирование всех токенов
+        // ============================================================
+        document.getElementById('copy-all-tokens').addEventListener('click', function() {
+            const cssVars = generateCssVars(currentColors);
+            navigator.clipboard.writeText(cssVars).then(() => {
+                showToast('✅ Все CSS-переменные скопированы');
+            }).catch(() => {
+                // fallback
+                const textarea = document.createElement('textarea');
+                textarea.value = cssVars;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+                showToast('✅ Все CSS-переменные скопированы');
+            });
         });
-    });
-</script>
 
+        // ============================================================
+        //  Инициализация
+        // ============================================================
+        renderAll();
+    </script>
 </body>
 </html>
