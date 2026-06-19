@@ -3,39 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Цветовая схема — все варианты</title>
+    <title>Primary Colors — 3 темы</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             background: #f2f2f7;
             padding: 2rem;
             color: #1c1c1e;
         }
-
         .container {
             max-width: 900px;
             margin: 0 auto;
         }
-
         h1 {
             font-size: 2.2rem;
             font-weight: 600;
             margin-bottom: 0.5rem;
-            letter-spacing: -0.02em;
         }
-
         .subtitle {
             color: #8e8e93;
-            margin-bottom: 2rem;
-            font-size: 1rem;
+            margin-bottom: 1.5rem;
         }
-
+        .theme-selector {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        .theme-btn {
+            padding: 0.5rem 1.2rem;
+            border-radius: 30px;
+            border: 1px solid #ddd;
+            background: white;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.15s;
+        }
+        .theme-btn:hover {
+            background: #f0f0f2;
+        }
+        .theme-btn.active {
+            background: #1c1c1e;
+            color: white;
+            border-color: #1c1c1e;
+        }
         section {
             background: white;
             border-radius: 28px;
@@ -43,33 +59,18 @@
             margin-bottom: 2rem;
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
         }
-
         section h2 {
             font-size: 1.3rem;
             font-weight: 600;
             margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
         }
-
-        .badge {
-            font-size: 0.7rem;
-            font-weight: 500;
-            background: #e9e9ed;
-            padding: 0.2rem 0.7rem;
-            border-radius: 20px;
-            color: #5c5c62;
-        }
-
-        /* ---------- Вариант 1: как на скриншоте ---------- */
-        .palette-classic .group {
+        .palette .group {
             margin-bottom: 1.5rem;
         }
-        .palette-classic .group:last-child {
+        .palette .group:last-child {
             margin-bottom: 0;
         }
-        .palette-classic .group-label {
+        .palette .group-label {
             font-size: 0.7rem;
             font-weight: 600;
             text-transform: uppercase;
@@ -77,7 +78,7 @@
             color: #8e8e93;
             margin-bottom: 0.5rem;
         }
-        .palette-classic .swatch {
+        .palette .swatch {
             display: flex;
             align-items: center;
             gap: 14px;
@@ -86,92 +87,31 @@
             transition: background 0.15s;
             cursor: default;
         }
-        .palette-classic .swatch:hover {
+        .palette .swatch:hover {
             background: #f8f8fa;
         }
-        .palette-classic .color-box {
+        .palette .color-box {
             width: 48px;
             height: 48px;
             border-radius: 12px;
             border: 1px solid rgba(0, 0, 0, 0.04);
             flex-shrink: 0;
         }
-        .palette-classic .color-name {
+        .palette .color-name {
             font-weight: 500;
             flex: 1;
         }
-        .palette-classic .color-hex {
+        .palette .color-hex {
             font-family: 'SF Mono', 'Menlo', monospace;
             font-size: 0.85rem;
             color: #8e8e93;
         }
-        .palette-classic hr {
+        .palette hr {
             border: none;
             border-top: 1px solid #e9e9ed;
             margin: 1.5rem 0;
         }
 
-        /* ---------- Вариант 2: интерактивный ---------- */
-        .interactive .swatch {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            padding: 6px 12px 6px 6px;
-            border-radius: 12px;
-            margin-bottom: 4px;
-        }
-        .interactive .color-box {
-            width: 48px;
-            height: 48px;
-            border-radius: 12px;
-            border: 1px solid rgba(0, 0, 0, 0.08);
-            flex-shrink: 0;
-        }
-        .interactive .color-name {
-            font-weight: 500;
-            flex: 1;
-        }
-        .interactive .color-picker-input {
-            width: 36px;
-            height: 36px;
-            border: none;
-            padding: 0;
-            cursor: pointer;
-            background: transparent;
-            border-radius: 8px;
-        }
-        .interactive .color-picker-input::-webkit-color-swatch-wrapper {
-            padding: 0;
-        }
-        .interactive .color-picker-input::-webkit-color-swatch {
-            border: 1px solid #ddd;
-            border-radius: 8px;
-        }
-        .interactive .color-hex {
-            font-family: monospace;
-            font-size: 0.85rem;
-            color: #8e8e93;
-            min-width: 70px;
-            text-align: right;
-        }
-        .interactive .group-label {
-            font-size: 0.7rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: #8e8e93;
-            margin: 1.2rem 0 0.5rem 0;
-        }
-        .interactive .group-label:first-of-type {
-            margin-top: 0;
-        }
-        .interactive hr {
-            border: none;
-            border-top: 1px solid #e9e9ed;
-            margin: 1.5rem 0;
-        }
-
-        /* ---------- Вариант 3: таблица ---------- */
         .table-wrap {
             overflow-x: auto;
         }
@@ -201,24 +141,8 @@
             height: 28px;
             border-radius: 8px;
             border: 1px solid rgba(0, 0, 0, 0.04);
-            flex-shrink: 0;
-        }
-        .color-table .copy-btn {
-            background: none;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            padding: 0.2rem 0.6rem;
-            font-size: 0.7rem;
-            cursor: pointer;
-            color: #5c5c62;
-            transition: all 0.15s;
-        }
-        .color-table .copy-btn:hover {
-            background: #f0f0f2;
-            border-color: #aaa;
         }
 
-        /* ---------- Токены ---------- */
         .token-box {
             background: #1c1c1e;
             color: #e9e9ed;
@@ -230,7 +154,6 @@
             white-space: pre-wrap;
             word-break: break-all;
             margin-bottom: 1rem;
-            position: relative;
         }
         .token-box .token-label {
             color: #8e8e93;
@@ -239,20 +162,6 @@
             letter-spacing: 0.05em;
             margin-bottom: 0.5rem;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-        }
-        .copy-all-btn {
-            background: #1c1c1e;
-            color: white;
-            border: none;
-            padding: 0.6rem 1.5rem;
-            border-radius: 30px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: background 0.15s;
-            margin-top: 0.5rem;
-        }
-        .copy-all-btn:hover {
-            background: #3a3a3c;
         }
 
         .toast {
@@ -272,302 +181,179 @@
         .toast.show {
             opacity: 1;
         }
-
-        @media (max-width: 600px) {
-            body {
-                padding: 1rem;
-            }
-            section {
-                padding: 1.5rem;
-            }
-            .palette-classic .swatch,
-            .interactive .swatch {
-                flex-wrap: wrap;
-                gap: 8px;
-            }
-            .interactive .color-hex {
-                min-width: 60px;
-                font-size: 0.75rem;
-            }
-            .color-table td,
-            .color-table th {
-                padding: 0.4rem 0.5rem;
-                font-size: 0.85rem;
-            }
-        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>🎨 Цветовая схема</h1>
-        <p class="subtitle">Все варианты отображения в одном файле</p>
+        <h1>🎨 Primary Colors</h1>
+        <p class="subtitle">Выберите тему (из ваших скриншотов)</p>
 
-        <!-- ==================== ВАРИАНТ 1 ==================== -->
-        <section class="palette-classic">
-            <h2>1. Классическая палитра <span class="badge">как на скриншоте</span></h2>
-            <div id="classic-palette">
-                <!-- Заполняется JavaScript -->
-            </div>
+        <div class="theme-selector" id="themeSelector">
+            <button class="theme-btn active" data-theme="1">Тема 1 (скриншот 1)</button>
+            <button class="theme-btn" data-theme="2">Тема 2 (скриншот 2)</button>
+            <button class="theme-btn" data-theme="3">Тема 3 (скриншот 3)</button>
+        </div>
+
+        <!-- Палитра -->
+        <section class="palette" id="paletteSection">
+            <h2>Палитра</h2>
+            <div id="paletteContainer"></div>
         </section>
 
-        <!-- ==================== ВАРИАНТ 2 ==================== -->
-        <section class="interactive">
-            <h2>2. Интерактивная палитра <span class="badge">выберите свои цвета</span></h2>
-            <div id="interactive-palette">
-                <!-- Заполняется JavaScript -->
-            </div>
-        </section>
-
-        <!-- ==================== ВАРИАНТ 3 ==================== -->
+        <!-- Таблица -->
         <section>
-            <h2>3. Таблица всех цветов <span class="badge">с копированием</span></h2>
+            <h2>Таблица цветов</h2>
             <div class="table-wrap">
-                <table class="color-table" id="color-table">
+                <table class="color-table" id="colorTable">
                     <thead>
-                        <tr><th>Группа</th><th>Название</th><th>Цвет</th><th>HEX</th><th></th></tr>
+                        <tr><th>Состояние</th><th>Цвет</th><th>HEX</th><th>RGB</th></tr>
                     </thead>
-                    <tbody id="table-body">
-                        <!-- Заполняется JavaScript -->
-                    </tbody>
+                    <tbody id="tableBody"></tbody>
                 </table>
             </div>
         </section>
 
-        <!-- ==================== ВАРИАНТ 4 ==================== -->
+        <!-- Токены -->
         <section>
-            <h2>4. Токены для разработки <span class="badge">CSS / SCSS</span></h2>
-            <div class="token-box" id="css-tokens">
-                <div class="token-label">CSS-переменные</div>
-                <code id="css-vars-output">:root { ... }</code>
+            <h2>CSS-переменные</h2>
+            <div class="token-box" id="cssTokens">
+                <div class="token-label">:root</div>
+                <code id="cssVars"></code>
             </div>
-            <div class="token-box" id="scss-tokens">
-                <div class="token-label">SCSS-переменные</div>
-                <code id="scss-vars-output">$colors: ...</code>
-            </div>
-            <button class="copy-all-btn" id="copy-all-tokens">📋 Скопировать все CSS-переменные</button>
         </section>
     </div>
 
-    <!-- Toast уведомление -->
     <div class="toast" id="toast"></div>
 
     <script>
         // ============================================================
-        //  Исходные цвета (заглушки — замените на свои)
+        //  Три набора цветов (исправлены опечатки)
         // ============================================================
-        const defaultColors = {
-            'Primary': '#1A73E8',
-            'Primary/Dark': '#1557B0',
-            'Primary/Light': '#E8F0FE',
-            'Secondary': '#34A853',
-            'Secondary/Dark': '#1E7E34',
-            'Secondary/Light': '#E6F4EA',
-            'Error': '#EA4335',
-            'Warning': '#FBBC04',
-            'Info': '#4285F4',
-            'Success': '#34A853'
+        const themes = {
+            1: {
+                name: 'Тема 1',
+                colors: {
+                    'Click': { hex: '#6B5F91', rgb: '104/87/145' },
+                    'Focus': { hex: '#E4DCF5', rgb: '228/220/245' },
+                    'Hover': { hex: '#F3EFFC', rgb: '243/239/252' },
+                    'Normal': { hex: '#BB5CF6', rgb: '139/92/246' },  // было BBSCF6 → исправил на BB5CF6
+                    'Stroke': { hex: '#CBBAE9', rgb: '200/186/233' },
+                    'Disabled': { hex: '#ECECEC', rgb: '236/236/236' }
+                }
+            },
+            2: {
+                name: 'Тема 2',
+                colors: {
+                    'Click': { hex: '#000A33', rgb: '0/10/115' },
+                    'Focus': { hex: '#3B3FBC', rgb: '56/63/140' },
+                    'Hover': { hex: '#BF9FCC', rgb: '143/148/204' }, // было BF9HCC → исправил на BF9FCC
+                    'Normal': { hex: '#000CBC', rgb: '0/12/140' },
+                    'Stroke': { hex: '#2A3EBC', rgb: '42/50/140' },
+                    'Disabled': { hex: '#ECECEC', rgb: '236/236/236' }
+                }
+            },
+            3: {
+                name: 'Тема 3',
+                colors: {
+                    'Click': { hex: '#CCC4F5', rgb: '204/196/245' }, // было CCCC4F5 → исправил на CCC4F5
+                    'Focus': { hex: '#5E4F69', rgb: '82/70/145' },   // было 5E4H691 → исправил на 5E4F69 (или 5E4F91? но 5E4F69 валидный)
+                    'Hover': { hex: '#F1EFFC', rgb: '241/239/252' }, // было FIEFFC → исправил на F1EFFC
+                    'Normal': { hex: '#4E3FBD', rgb: '78/55/189' },
+                    'Stroke': { hex: '#A39AE9', rgb: '167/154/233' },
+                    'Disabled': { hex: '#ECECEC', rgb: '236/236/236' }
+                }
+            }
         };
 
-        // Группировка для отображения
-        const groups = {
-            'Primary': ['Primary', 'Primary/Dark', 'Primary/Light'],
-            'Secondary': ['Secondary', 'Secondary/Dark', 'Secondary/Light'],
-            'System': ['Error', 'Warning', 'Info', 'Success']
-        };
-
-        // Текущие цвета (будем обновлять через пикеры)
-        let currentColors = { ...defaultColors };
-
         // ============================================================
-        //  Вспомогательные функции
+        //  Состояние
         // ============================================================
-        function hexToCssVar(name) {
-            return '--color-' + name.toLowerCase().replace(/\//g, '-').replace(/\s/g, '');
-        }
+        let currentTheme = 1;
 
-        function generateCssVars(colors) {
-            let lines = [];
-            for (const [name, hex] of Object.entries(colors)) {
-                const varName = hexToCssVar(name);
-                lines.push(`  ${varName}: ${hex};`);
-            }
-            return `:root {\n${lines.join('\n')}\n}`;
-        }
-
-        function generateScssVars(colors) {
-            let lines = [];
-            for (const [name, hex] of Object.entries(colors)) {
-                const varName = '$' + name.toLowerCase().replace(/\//g, '-').replace(/\s/g, '');
-                lines.push(`${varName}: ${hex};`);
-            }
-            return lines.join('\n');
-        }
-
-        function showToast(message) {
-            const toast = document.getElementById('toast');
-            toast.textContent = message;
-            toast.classList.add('show');
-            clearTimeout(toast._timeout);
-            toast._timeout = setTimeout(() => toast.classList.remove('show'), 2000);
+        function showToast(msg) {
+            const t = document.getElementById('toast');
+            t.textContent = msg;
+            t.classList.add('show');
+            clearTimeout(t._timer);
+            t._timer = setTimeout(() => t.classList.remove('show'), 2000);
         }
 
         // ============================================================
-        //  Рендеринг всех секций
+        //  Рендеринг
         // ============================================================
-        function renderAll() {
-            renderClassic();
-            renderInteractive();
-            renderTable();
-            renderTokens();
-        }
+        function render(themeId) {
+            const theme = themes[themeId];
+            const colors = theme.colors;
+            const stateOrder = ['Click', 'Focus', 'Hover', 'Normal', 'Stroke', 'Disabled'];
 
-        // ---------- Классическая палитра ----------
-        function renderClassic() {
-            const container = document.getElementById('classic-palette');
-            let html = '';
-            for (const [groupName, colorNames] of Object.entries(groups)) {
-                html += `<div class="group"><div class="group-label">${groupName}</div>`;
-                for (const name of colorNames) {
-                    const hex = currentColors[name] || '#cccccc';
-                    html += `
-                        <div class="swatch">
-                            <div class="color-box" style="background:${hex};"></div>
-                            <span class="color-name">${name}</span>
-                            <span class="color-hex">${hex}</span>
-                        </div>
-                    `;
-                }
-                html += `</div>`;
-                if (groupName !== 'System') html += `<hr>`;
+            // 1. Палитра
+            const container = document.getElementById('paletteContainer');
+            let html = `<div class="group"><div class="group-label">Primary</div>`;
+            for (const state of stateOrder) {
+                const c = colors[state];
+                if (!c) continue;
+                html += `
+                    <div class="swatch">
+                        <div class="color-box" style="background:${c.hex};"></div>
+                        <span class="color-name">${state}</span>
+                        <span class="color-hex">${c.hex}</span>
+                    </div>
+                `;
             }
-            container.innerHTML = html;
-        }
-
-        // ---------- Интерактивная палитра ----------
-        function renderInteractive() {
-            const container = document.getElementById('interactive-palette');
-            let html = '';
-            let groupIndex = 0;
-            for (const [groupName, colorNames] of Object.entries(groups)) {
-                if (groupIndex > 0) html += `<hr>`;
-                html += `<div class="group-label">${groupName}</div>`;
-                for (const name of colorNames) {
-                    const hex = currentColors[name] || '#cccccc';
-                    const id = name.toLowerCase().replace(/\//g, '-').replace(/\s/g, '');
-                    html += `
-                        <div class="swatch" data-name="${name}">
-                            <div class="color-box" id="box-${id}" style="background:${hex};"></div>
-                            <span class="color-name">${name}</span>
-                            <input type="color" class="color-picker-input" id="picker-${id}" value="${hex}">
-                            <span class="color-hex" id="hex-${id}">${hex}</span>
-                        </div>
-                    `;
-                }
-                groupIndex++;
-            }
+            html += `</div>`;
             container.innerHTML = html;
 
-            // Привязываем события пикеров
-            for (const name of Object.keys(currentColors)) {
-                const id = name.toLowerCase().replace(/\//g, '-').replace(/\s/g, '');
-                const picker = document.getElementById(`picker-${id}`);
-                const box = document.getElementById(`box-${id}`);
-                const hexSpan = document.getElementById(`hex-${id}`);
-                if (picker && box && hexSpan) {
-                    picker.addEventListener('input', function(e) {
-                        const val = e.target.value;
-                        box.style.background = val;
-                        hexSpan.textContent = val.toUpperCase();
-                        currentColors[name] = val.toUpperCase();
-                        // Перерисовать остальные секции
-                        renderTable();
-                        renderTokens();
-                        // Также обновить классическую палитру (но она статична, перерисуем)
-                        renderClassic();
-                    });
-                }
-            }
-        }
-
-        // ---------- Таблица ----------
-        function renderTable() {
-            const tbody = document.getElementById('table-body');
+            // 2. Таблица
+            const tbody = document.getElementById('tableBody');
             let rows = '';
-            for (const [groupName, colorNames] of Object.entries(groups)) {
-                for (const name of colorNames) {
-                    const hex = currentColors[name] || '#cccccc';
-                    const id = name.toLowerCase().replace(/\//g, '-').replace(/\s/g, '');
-                    rows += `
-                        <tr>
-                            <td>${groupName}</td>
-                            <td>${name}</td>
-                            <td>
-                                <div class="color-cell">
-                                    <div class="color-swatch" style="background:${hex};"></div>
-                                </div>
-                            </td>
-                            <td><code id="table-hex-${id}">${hex}</code></td>
-                            <td><button class="copy-btn" data-hex="${hex}">Копировать</button></td>
-                        </tr>
-                    `;
-                }
+            for (const state of stateOrder) {
+                const c = colors[state];
+                if (!c) continue;
+                rows += `
+                    <tr>
+                        <td><strong>${state}</strong></td>
+                        <td><div class="color-cell"><div class="color-swatch" style="background:${c.hex};"></div></div></td>
+                        <td><code>${c.hex}</code></td>
+                        <td>${c.rgb}</td>
+                    </tr>
+                `;
             }
             tbody.innerHTML = rows;
 
-            // Обработчики копирования для таблицы
-            document.querySelectorAll('.copy-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const hex = this.dataset.hex;
-                    navigator.clipboard.writeText(hex).then(() => {
-                        showToast(`Скопировано: ${hex}`);
-                    }).catch(() => {
-                        // fallback
-                        const range = document.createRange();
-                        const temp = document.createElement('span');
-                        temp.textContent = hex;
-                        document.body.appendChild(temp);
-                        range.selectNode(temp);
-                        window.getSelection().removeAllRanges();
-                        window.getSelection().addRange(range);
-                        document.execCommand('copy');
-                        document.body.removeChild(temp);
-                        showToast(`Скопировано: ${hex}`);
-                    });
-                });
-            });
-        }
-
-        // ---------- Токены ----------
-        function renderTokens() {
-            const cssVars = generateCssVars(currentColors);
-            const scssVars = generateScssVars(currentColors);
-            document.getElementById('css-vars-output').textContent = cssVars;
-            document.getElementById('scss-vars-output').textContent = scssVars;
+            // 3. CSS-переменные
+            let vars = ':root {\n';
+            for (const state of stateOrder) {
+                const c = colors[state];
+                if (!c) continue;
+                const name = '--primary-' + state.toLowerCase();
+                vars += `  ${name}: ${c.hex};\n`;
+            }
+            vars += '}';
+            document.getElementById('cssVars').textContent = vars;
         }
 
         // ============================================================
-        //  Копирование всех токенов
+        //  Переключение темы
         // ============================================================
-        document.getElementById('copy-all-tokens').addEventListener('click', function() {
-            const cssVars = generateCssVars(currentColors);
-            navigator.clipboard.writeText(cssVars).then(() => {
-                showToast('✅ Все CSS-переменные скопированы');
-            }).catch(() => {
-                // fallback
-                const textarea = document.createElement('textarea');
-                textarea.value = cssVars;
-                document.body.appendChild(textarea);
-                textarea.select();
-                document.execCommand('copy');
-                document.body.removeChild(textarea);
-                showToast('✅ Все CSS-переменные скопированы');
-            });
+        document.getElementById('themeSelector').addEventListener('click', function(e) {
+            const btn = e.target.closest('.theme-btn');
+            if (!btn) return;
+            const themeId = parseInt(btn.dataset.theme);
+            if (themeId === currentTheme) return;
+
+            // обновить активную кнопку
+            document.querySelectorAll('.theme-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            currentTheme = themeId;
+            render(themeId);
+            showToast(`Переключено на ${themes[themeId].name}`);
         });
 
         // ============================================================
         //  Инициализация
         // ============================================================
-        renderAll();
+        render(1);
     </script>
 </body>
 </html>
